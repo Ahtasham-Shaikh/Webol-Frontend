@@ -1,5 +1,8 @@
 <template>
-   <Card :movie="movie" v-for="movie in moviesStore.movies" />
+    <div class="bg-gray-900 w-full">
+        <HeroBanner :movie="moviesStore.movies[1]" />
+        <Card :movie="movie" v-for="movie in moviesStore.movies" />
+    </div>
 </template>
 
 <script setup lang="ts">

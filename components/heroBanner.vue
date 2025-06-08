@@ -7,7 +7,7 @@
     }"
   >
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-10 z-60 opacity-50"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-10 z-10 opacity-50"></div>
 
     <!-- Content -->
     <div class="relative z-10 px-6 max-w-3xl">
@@ -28,6 +28,7 @@
       </p>
 
       <a
+        @click="openComments"
         v-if="movie.comments && movie.comments.length"
         :href="`#comments-${movie.id}`"
         class="inline-block mt-6 px-6 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition cursor-pointer"
@@ -42,12 +43,18 @@
     import type { PropType } from 'vue';
     import type { Movie } from '~/types/Movie';
 
+    const emit = defineEmits(['openComments'])
+
     const { movie } = defineProps({
         movie: {
             type: Object as PropType<Movie>,
             required: true
         }
     });
+
+    const openComments = () => {
+      emit('openComments')
+    }
 
 </script>
 

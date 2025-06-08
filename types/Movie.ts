@@ -6,6 +6,6 @@ export interface Movie {
   releaseDate: string;
   thumbnail?: string | null;
   backdrop?: string | null;
-  comments?: Comment[];
+  comments: Comment[];
   rating: Number
 }

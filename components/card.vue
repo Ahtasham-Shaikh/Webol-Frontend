@@ -11,7 +11,7 @@
       <h2 class="text-xl font-bold">{{ movie.title }}</h2>
       <p class="text-gray-400">Runtime: 2h 28m</p>
       <p class="text-orange-400 font-semibold">Rating: {{ formatNumber(movie.rating) }}</p>
-      <p class="text-gray-400">Release Date {{ formatDate(movie.releaseDate) }}</p>
+      <p class="text-gray-400">{{ 'releaseDate' in movie ? 'Release Date' : 'First Aired' }}: {{ formatDate(releaseOrAirDate) }}</p>
     </div>
   </div>
 
@@ -24,12 +24,19 @@
 <script setup lang="ts">
     import type { PropType } from 'vue';
 import type { Movie } from '~/types/Movie';
+import type { TvShow } from '~/types/TvShow';
     
     const { movie } = defineProps({
         movie: {
-            type: Object as PropType<Movie>,
+            type: Object as PropType<Movie | TvShow>,
             required: true
         }
     });
+
+    const releaseOrAirDate = computed(() => {
+      return 'releaseDate' in movie
+        ? movie.releaseDate
+        : movie.firstAirDate
+    })
 
 </script>

@@ -21,9 +21,10 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { Comment } from '~/types/Comment';
+import type { TvComment } from '~/types/TvShow';
     const { comments } = defineProps({
         comments: {
-            type: Array as PropType<Comment[]>,
+            type: Array as PropType<Comment[] | TvComment[]>,
             required: true,
         },
     })

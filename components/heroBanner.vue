@@ -27,14 +27,13 @@
         ⭐ {{ movie.rating.toFixed(1) }} / 5
       </p>
 
-      <a
+      <button
         @click="openComments"
         v-if="movie.comments && movie.comments.length"
-        :href="`#comments-${movie.id}`"
         class="inline-block mt-6 px-6 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition cursor-pointer"
       >
         See Comments ({{ movie.comments.length }})
-      </a>
+    </button>
     </div>
   </section>
 </template>
@@ -42,12 +41,13 @@
 <script setup lang="ts">
     import type { PropType } from 'vue';
     import type { Movie } from '~/types/Movie';
+    import type { TvShow } from '~/types/TvShow';
 
     const emit = defineEmits(['openComments'])
 
     const { movie } = defineProps({
         movie: {
-            type: Object as PropType<Movie>,
+            type: Object as PropType<Movie | TvShow>,
             required: true
         }
     });

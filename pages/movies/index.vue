@@ -1,5 +1,5 @@
 <template>
-    this is the movies page
+   <Card :movie="movie" v-for="movie in moviesStore.movies" />
 </template>
 
 <script setup lang="ts">

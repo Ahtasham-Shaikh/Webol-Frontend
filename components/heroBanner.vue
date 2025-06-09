@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative h-screen bg-cover bg-center flex items-center justify-center text-center text-white bg-black pt-[72px] lg:mb-10 "
+    class="relative h-screen bg-cover bg-center flex items-center justify-center text-center text-white bg-black pt-[72px] mb-8 lg:mb-10 "
     :style="{
       '--bg-mobile': `url(${movie.thumbnail})`,
       '--bg-desktop': `url(${movie.backdrop})`,
@@ -20,7 +20,7 @@
       </h1>
 
       <p class="mt-2 text-lg text-gray-300">
-        Released: {{ formatDate(movie.releaseDate) }}
+        <p class="text-gray-400">{{ 'releaseDate' in movie ? 'Release Date' : 'First Aired' }}: {{ formatDate(releaseOrAirDate) }}</p>
       </p>
 
       <p v-if="movie.rating" class="mt-1 text-md text-yellow-300">
@@ -55,6 +55,12 @@
     const openComments = () => {
       emit('openComments')
     }
+
+    const releaseOrAirDate = computed(() => {
+      return 'releaseDate' in movie
+        ? movie.releaseDate
+        : movie.firstAirDate
+    })
 
 </script>
 

@@ -1,7 +1,7 @@
 <template>
-    <div class="flex-1 bg-gray-800 rounded p-3 overflow-y-auto max-h-96 hidden lg:block scrollbar-hide">
-        <h3 class="text-lg font-semibold mb-2">Comments</h3>
-        <ul class="space-y-4 text-sm text-gray-300">
+    <div class="flex-1 bg-gray-800 rounded p-3 lg:block max-w-3xl">
+        <h3 class="text-lg font-semibold mb-2 text-white">Comments</h3>
+        <ul class="space-y-4 text-sm text-gray-300 overflow-y-auto max-h-96 scrollbar-hide">
             <li v-for="comment in sortedComments" class="bg-gray-700 p-3 rounded">
                 <div class="flex justify-between items-center mb-1">
                 <span class="font-semibold text-white italic text-xs">{{ comment.userName }}</span>

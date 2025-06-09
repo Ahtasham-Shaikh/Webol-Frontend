@@ -10,15 +10,24 @@
     <div class="flex gap-2 flex-col lg:gap-3">
       <h2 class="text-xl font-bold">{{ movie.title }}</h2>
       <p class="text-gray-400">Runtime: 2h 28m</p>
-      <p class="text-orange-400 font-semibold">Rating: {{ formatNumber(movie.rating) }}</p>
+      <p class="text-orange-400 font-semibold">Rating: ⭐{{ formatNumber(movie.rating) }} / 5</p>
       <p class="text-gray-400">{{ 'releaseDate' in movie ? 'Release Date' : 'First Aired' }}: {{ formatDate(releaseOrAirDate) }}</p>
     </div>
+    <button
+      @click="null"
+      v-if="movie.comments && movie.comments.length"
+      class="lg:hidden mt-0 inline-block px-3 py-2 text-sm bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition cursor-pointer"
+      >
+      See Comments ({{ movie.comments.length }})
+    </button>
   </div>
 
-  <Comments :comments="movie.comments" />
+  <div class="hidden lg:block">
+    <Comments :comments="movie.comments" />
+  </div>
+
   
 </div>
-
 </template>
 
 <script setup lang="ts">

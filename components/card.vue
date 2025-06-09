@@ -14,7 +14,7 @@
       <p class="text-gray-400">{{ 'releaseDate' in movie ? 'Release Date' : 'First Aired' }}: {{ formatDate(releaseOrAirDate) }}</p>
     </div>
     <button
-      @click="null"
+      @click="showCommentsModal = true"
       v-if="movie.comments && movie.comments.length"
       class="lg:hidden mt-0 inline-block px-3 py-2 text-sm bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition cursor-pointer"
       >
@@ -26,6 +26,10 @@
     <Comments :comments="movie.comments" />
   </div>
 
+  <Modal @close="showCommentsModal = false" :show="showCommentsModal">
+      <Comments :comments="movie.comments" />
+  </Modal>
+
   
 </div>
 </template>
@@ -35,6 +39,8 @@
 import type { Movie } from '~/types/Movie';
 import type { TvShow } from '~/types/TvShow';
     
+    const showCommentsModal = ref(false)
+
     const { movie } = defineProps({
         movie: {
             type: Object as PropType<Movie | TvShow>,

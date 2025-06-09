@@ -5,7 +5,6 @@
     <img :src="movie.thumbnail" alt="Movie Poster" class="w-full h-full object-cover rounded" />
   </div>
 
-  <!-- Movie Info -->
   <div class="flex flex-col justify-between space-y-2 w-full lg:w-1/3">
     <div class="flex flex-col gap-2 lg:gap-3">
       <h2 class="text-xl font-bold">{{ movie.title }}</h2>
@@ -14,7 +13,7 @@
       <p class="text-gray-400">{{ 'releaseDate' in movie ? 'Release Date' : 'First Aired' }}: {{ formatDate(releaseOrAirDate) }}</p>
     </div>
     <button
-      @click="showCommentsModal = true"
+      @click="openComments"
       v-if="movie.comments && movie.comments.length"
       class="lg:hidden mt-0 inline-block px-3 py-2 text-sm bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition cursor-pointer"
     >
@@ -22,13 +21,11 @@
     </button>
   </div>
 
-  <!-- Desktop Comments -->
   <div class="hidden lg:block">
     <Comments :comments="movie.comments" />
   </div>
 
-  <!-- Modal for Mobile -->
-  <Modal @close="showCommentsModal = false" :show="showCommentsModal">
+  <Modal @close="closeComments" :show="showCommentsModal">
     <Comments :comments="movie.comments" />
   </Modal>
 </div>
@@ -39,7 +36,7 @@
 import type { Movie } from '~/types/Movie';
 import type { TvShow } from '~/types/TvShow';
     
-    const showCommentsModal = ref(false)
+    const { showCommentsModal, openComments, closeComments } = useCommentsModal()
 
     const { movie } = defineProps({
         movie: {

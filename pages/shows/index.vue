@@ -14,25 +14,12 @@
 import { ref, computed, watch } from 'vue'
 import type { TvShow } from '~/types/TvShow'
 
-const showCommentsModal = ref(false)
+const { showCommentsModal, openComments, closeComments } = useCommentsModal()
 const tvShowsStore = useTvShowsStore()
 
 const { data, refresh } = await useAsyncData<TvShow[]>('fetchingTvShows', async () => {
   return await $fetch('http://localhost:8000/tvshows')
 })
-
-// Prevent body scroll when modal is open
-watch(showCommentsModal, (newVal) => {
-  document.body.classList.toggle('overflow-hidden', newVal)
-})
-
-const openComments = () => {
-  showCommentsModal.value = true
-}
-
-const closeComments = () => {
-  showCommentsModal.value = false
-}
 
 const featuredShow = computed<TvShow>(() => {
   return tvShowsStore.tvShows.reduce((highest, current) =>

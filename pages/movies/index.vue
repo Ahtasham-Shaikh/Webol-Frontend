@@ -1,10 +1,13 @@
 <template>
-    <div class="bg-gray-900 w-full">
+    <div class="bg-gray-900 w-full flex items-center justify-center flex-col">
         <Modal @close="closeComments" :show="showCommentsModal">
             <Comments :comments="featuredMovie?.comments" />
         </Modal>
         <HeroBanner @open-comments="openComments" :movie="featuredMovie" />
-        <Card :movie="movie" v-for="movie in moviesStore.movies" />
+        <Container>
+            <ListHeader :header-text="'Latest Movies For You'" />
+            <Card :movie="movie" v-for="movie in moviesStore.movies" />
+        </Container>
     </div>
 </template>
 

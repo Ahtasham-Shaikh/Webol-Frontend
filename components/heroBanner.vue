@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative h-screen bg-cover bg-center flex items-center justify-center text-center text-white bg-black pt-[72px] mb-8 lg:mb-10 "
+    class="relative h-screen bg-cover bg-center w-full flex items-center justify-center text-center text-white bg-black pt-[72px] mb-6 lg:mb-10 "
     :style="{
       '--bg-mobile': `url(${movie.thumbnail})`,
       '--bg-desktop': `url(${movie.backdrop})`,

@@ -1,10 +1,12 @@
 <template>
-  <div class="bg-gray-900 w-full">
+  <div class="bg-gray-900 w-full flex justify-center items-center flex-col">
     <Modal @close="closeComments" :show="showCommentsModal">
       <Comments :comments="featuredShow?.comments" />
     </Modal>
     <HeroBanner @open-comments="openComments" :movie="featuredShow" />
-    <Card v-for="show in tvShowsStore.tvShows" :key="show.id" :movie="show" />
+    <Container>
+      <Card v-for="show in tvShowsStore.tvShows" :key="show.id" :movie="show" />
+    </Container>
   </div>
 </template>
 
